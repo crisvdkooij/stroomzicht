@@ -4,6 +4,15 @@ Een prototype van een betere capaciteitskaart van het Nederlandse stroomnet. **A
 
 Open `index.html` in een browser. Er is geen server nodig, wel internet voor d3 en de lettertypen.
 
+## Online zetten
+
+De workflow `.github/workflows/pages.yml` zet het prototype en de filmpagina op GitHub Pages, bij elke push naar de standaardbranch:
+
+- `https://crisvdkooij.github.io/otto/`: het prototype
+- `https://crisvdkooij.github.io/otto/film.html`: de promofilm
+
+Alleen `index.html`, `film.html` en de film zelf komen online, niet de rest van de repo. Eenmalig nodig: in de repo-instellingen bij **Pages** de bron op **GitHub Actions** zetten. Voor een privérepo kan dat alleen met een betaald GitHub-abonnement; met een gratis account moet de repo daarvoor openbaar zijn. Een Pages-site is altijd voor iedereen te zien, ook als de repo privé is.
+
 ## Wat het laat zien
 
 - **Netvlakken als keten.** Van het landelijke net tot de straat: EHS-net → koppelstation → HS-net → onderstation → MS-net → wijkstation → LS-net. Netten zijn lijnen, stations zijn transformatoren. Elke schakel heeft een eigen status, wachtrij en uitbreiding.
