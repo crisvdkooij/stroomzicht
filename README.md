@@ -6,12 +6,12 @@ Open `index.html` in een browser. Er is geen server nodig, wel internet voor d3 
 
 ## Online zetten
 
-De workflow `.github/workflows/pages.yml` zet het prototype en de filmpagina op GitHub Pages, bij elke push naar de standaardbranch:
+De workflow `.github/workflows/pages.yml` zet het prototype en de filmpagina op GitHub Pages bij elke push naar `main`:
 
-- `https://crisvdkooij.github.io/otto/`: het prototype
-- `https://crisvdkooij.github.io/otto/film.html`: de promofilm
+- https://crisvdkooij.github.io/stroomzicht/: het prototype
+- https://crisvdkooij.github.io/stroomzicht/film.html: de promofilm
 
-Alleen `index.html`, `film.html` en de film zelf komen online, niet de rest van de repo. Eenmalig nodig: in de repo-instellingen bij **Pages** de bron op **GitHub Actions** zetten. Voor een privérepo kan dat alleen met een betaald GitHub-abonnement; met een gratis account moet de repo daarvoor openbaar zijn. Een Pages-site is altijd voor iedereen te zien, ook als de repo privé is.
+Alleen `index.html`, `film.html` en de film zelf komen online, niet de rest van de repo. Eenmalig nodig: in de repo-instellingen bij **Pages** de bron op **GitHub Actions** zetten.
 
 ## Wat het laat zien
 
@@ -72,3 +72,7 @@ bash promo/maak-film.sh --mux   # alleen opnieuw samenvoegen
 `promo/pagina.html` is een kijkpagina met de film en hoofdstukken die de film besturen.
 
 Daarvoor zijn nodig: Chromium via Playwright, ffmpeg met libx264, en Python met numpy en scipy (`PYTHON=/pad/naar/python` als die niet de standaard is).
+
+## Licentie
+
+De code valt onder de GPL-3.0, zie `LICENSE`. Voor de geodata in `src/data/` gelden de voorwaarden van de bronnen: GSHHG (LGPL), Natural Earth (publiek domein) en GeoNames (CC BY 4.0).
