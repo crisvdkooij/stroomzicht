@@ -1,0 +1,113 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Capaciteitskaart prototype</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+/*__CSS__*/
+</style>
+
+<!--body-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-thuis" viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5V20h-5v-5H9v5H4z"/></symbol>
+  <symbol id="i-bedrijf" viewBox="0 0 24 24"><path d="M3 20h18M4 20v-9l5 3v-3l5 3V5h4l1 15"/></symbol>
+  <symbol id="i-opwek" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5V5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3 7 7M17 17l1.7 1.7M5.3 18.7 7 17M17 7l1.7-1.7"/></symbol>
+  <symbol id="i-regio" viewBox="0 0 24 24"><path d="M9 4 3 6.5V20l6-2.5 6 2.5 6-2.5V4l-6 2.5zM9 4v13.5M15 6.5V20"/></symbol>
+  <symbol id="i-expert" viewBox="0 0 24 24"><circle cx="5" cy="6" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M7.2 6h9.6M6 8l5 8M18 8l-5 8"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-fit" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-keten" viewBox="0 0 24 24"><path d="M6 5h12M8 10h8M10 15h4M12 5v14"/><circle cx="12" cy="19.5" r="1.3"/></symbol>
+  <symbol id="i-s0" viewBox="0 0 16 16"><path d="m3.5 8.5 3 3 6-6.5"/></symbol>
+  <symbol id="i-s1" viewBox="0 0 16 16"><path d="M4 8h8"/></symbol>
+  <symbol id="i-s2" viewBox="0 0 16 16"><circle cx="8" cy="8" r="5.3"/><path d="M8 5v3.2l2.1 1.3"/></symbol>
+  <symbol id="i-s3" viewBox="0 0 16 16"><path d="m4.5 4.5 7 7M11.5 4.5l-7 7"/></symbol>
+</svg>
+
+<div class="shell">
+  <header class="top">
+    <div class="top-in">
+      <div class="brand">
+        <svg viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="7" fill="var(--ink)"/><path d="M6 9h18" stroke="var(--panel)" stroke-width="3.2"/><path d="M9 15.5h12" stroke="var(--panel)" stroke-width="2.2"/><path d="M12 21.5h6" stroke="var(--panel)" stroke-width="1.4"/><path d="M15 9v12.5" stroke="var(--panel)" stroke-width="1.2"/></svg>
+        <div><strong>Capaciteitskaart</strong><span class="proto">Prototype · fictieve data</span></div>
+      </div>
+      <nav class="views" id="views" aria-label="Weergave"></nav>
+      <div class="search">
+        <svg class="ic" aria-hidden="true"><use href="#i-search"/></svg>
+        <input id="q" type="search" placeholder="Zoek plaats of station" autocomplete="off" aria-label="Zoek plaats of station" aria-controls="qres">
+        <ul class="results" id="qres" hidden></ul>
+      </div>
+    </div>
+  </header>
+
+  <main class="app">
+    <div class="left">
+    <section class="ask" id="ask" aria-label="Uw vraag"></section>
+
+    <section class="set" aria-label="Kaartinstellingen">
+      <div class="blk">
+        <h2 class="lbl">Netvlakken</h2>
+        <div id="ladder"></div>
+      </div>
+      <div class="blk">
+        <h2 class="lbl"><span>Peiljaar</span><output id="yearOut" for="year">2026</output></h2>
+        <div class="yearrow">
+          <button class="iconbtn" id="play" type="button" aria-label="Speel de jaren af"><svg class="ic fill" aria-hidden="true"><use href="#i-play"/></svg></button>
+          <input type="range" id="year" min="2026" max="2035" step="1" value="2026" aria-label="Peiljaar">
+        </div>
+        <div class="ticks"><span>2026</span><span>2029</span><span>2032</span><span>2035</span></div>
+        <p class="hint" id="yearHint"></p>
+      </div>
+      <div class="blk" id="hourBlk" hidden>
+        <h2 class="lbl"><span>Tijdstip</span><output id="hourOut" for="hour">piek</output></h2>
+        <div class="yearrow">
+          <button class="iconbtn" id="hplay" type="button" aria-label="Speel de dag af"><svg class="ic fill" aria-hidden="true"><use href="#i-play"/></svg></button>
+          <input type="range" id="hour" min="-1" max="23" step="1" value="-1" aria-label="Uur van de dag">
+        </div>
+        <div class="ticks"><span>piek</span><span>06</span><span>12</span><span>18</span><span>23</span></div>
+        <p class="hint">Helemaal links: het drukste moment. Schuif door de dag om te zien wanneer er lucht is.</p>
+      </div>
+      <div class="blk">
+        <h2 class="lbl">Kaartlagen</h2>
+        <div class="checks" id="layers">
+          <label><input type="checkbox" id="l-lines" data-layer="lines"> Lijnen en kabels</label>
+          <label><input type="checkbox" id="l-stations" data-layer="stations"> Stations</label>
+          <label><input type="checkbox" id="l-projects" data-layer="projects"> Geplande uitbreidingen</label>
+          <label><input type="checkbox" id="l-queue" data-layer="queue"> Wachtrij (bollen)</label>
+          <label><input type="checkbox" id="l-operators" data-layer="operators"> Grenzen netbeheerders</label>
+          <label><input type="checkbox" id="l-labels" data-layer="labels"> Plaatsnamen</label>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <section class="mapwrap" aria-label="Kaart">
+      <div class="mapstage" id="stage">
+        <canvas id="map" role="img" aria-label="Kaart van Nederland met de ruimte op het stroomnet. Dezelfde gegevens staan als lijst in het paneel."></canvas>
+        <div class="over tr">
+          <button class="iconbtn" type="button" data-act="zoom" data-v="1.6" aria-label="Inzoomen"><svg class="ic" aria-hidden="true"><use href="#i-plus"/></svg></button>
+          <button class="iconbtn" type="button" data-act="zoom" data-v="0.625" aria-label="Uitzoomen"><svg class="ic" aria-hidden="true"><use href="#i-minus"/></svg></button>
+          <button class="iconbtn" type="button" data-act="fit" aria-label="Heel Nederland"><svg class="ic" aria-hidden="true"><use href="#i-fit"/></svg></button>
+        </div>
+        <div class="over br">
+          <div class="credit">Netdata is verzonnen. Kustlijn GSHHG, grenzen Natural Earth, plaatsnamen GeoNames.</div>
+          <div class="scale" id="scale"><span></span><i></i></div>
+        </div>
+      </div>
+      <div class="over tl">
+        <div class="card maptitle" id="maptitle" aria-live="polite"></div>
+        <div class="card legend" id="legend"></div>
+      </div>
+    </section>
+
+    <aside class="panel" id="panel" aria-label="Uitleg bij de kaart"></aside>
+  </main>
+</div>
+<div class="tip" id="tip" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+/*__JS__*/
+</script>

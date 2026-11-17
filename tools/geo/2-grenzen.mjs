@@ -1,0 +1,15 @@
+import fs from 'fs';
+import * as topojson from 'topojson-client';
+const w = JSON.parse(fs.readFileSync('node_modules/world-atlas/countries-10m.json','utf8'));
+const cs = topojson.feature(w, w.objects.countries).features;
+const out = {};
+for (const f of cs) if (['Netherlands','Belgium','Germany'].includes(f.properties.name)) out[f.properties.name] = f.geometry;
+fs.writeFileSync('ne_countries.json', JSON.stringify(out));
+const t = JSON.parse(fs.readFileSync('node_modules/datamaps/src/js/data/nld.topo.json','utf8'));
+const key = Object.keys(t.objects)[0];
+const feats = topojson.feature(t, t.objects[key]).features;
+console.log('topo object', key, feats.length, feats.map(f=>f.properties.name).join('|'));
+const mesh = topojson.mesh(t, t.objects[key], (a,b)=>a!==b);
+const full = JSON.parse(fs.readFileSync('node_modules/datamaps/src/js/data/nld.json','utf8'));
+fs.writeFileSync('ne_prov.json', JSON.stringify({mesh, provinces: full.features.filter(f=>f.properties.name && f.properties.latitude>50).map(f=>({name:f.properties.name, geometry:f.geometry}))}));
+console.log('mesh lines', mesh.coordinates.length, 'pts', mesh.coordinates.reduce((a,l)=>a+l.length,0));
