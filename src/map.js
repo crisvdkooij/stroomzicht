@@ -254,7 +254,7 @@ function createMap(canvas, model, d3, hooks) {
   const go = (t, ms) => (reduce() || !ms ? node : node.transition().duration(ms)).call(zoom.transform, t);
 
   function resize() {
-    const r = canvas.getBoundingClientRect(); cw = Math.max(60, r.width); ch = Math.max(60, r.height);
+    cw = Math.max(60, canvas.clientWidth); ch = Math.max(60, canvas.clientHeight);
     dpr = Math.min(2, window.devicePixelRatio || 1);
     for (const c of [canvas, baseCv]) { c.width = Math.round(cw * dpr); c.height = Math.round(ch * dpr); }
     const pad = cw < 560 ? 8 : 22, padL = cw >= 780 ? 236 : pad;
@@ -294,6 +294,7 @@ function createMap(canvas, model, d3, hooks) {
     zoomBy: f => (reduce() ? node : node.transition().duration(220)).call(zoom.scaleBy, f),
     reset: () => go(d3.zoomIdentity, 500),
     scale: () => K,
+    toScreen: (x, y) => [OX + K * x, OY + K * y],
   };
 }
 

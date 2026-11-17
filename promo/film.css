@@ -1,0 +1,67 @@
+/* film.css — de regielaag over het prototype. Alle beweging wordt per frame vanuit film.js gezet. */
+:root {
+  --stage: #0a1120; --stage2: #0f1930; --f-ink: #f3f6fb; --f-sub: #aab6cb; --f-dim: #7f8ba3; --f-acc: #8aa4ff; --f-blue: #2f5bea;
+  --f-s0: #17a08e; --f-s1: #dfa90f; --f-s2: #e66a2e; --f-s3: #d23a5c;
+}
+html, body { background: var(--stage) !important; overflow: hidden !important; }
+.shell { position: absolute !important; left: 0; top: 0; width: 1600px !important; height: 900px !important; transform-origin: 0 0;
+  background: var(--bg); overflow: hidden; }
+.tip { display: none !important; }
+
+#film { position: fixed; inset: 0; z-index: 100; pointer-events: none; font-family: var(--f-body); color: var(--f-ink); }
+#film * { box-sizing: border-box; }
+.f-layer { position: absolute; inset: 0; }
+
+/* kaarten over het hele beeld */
+.f-card { position: absolute; inset: 0; background:
+  radial-gradient(1200px 700px at 30% 20%, rgba(47, 91, 234, .16), transparent 60%),
+  radial-gradient(900px 600px at 85% 90%, rgba(210, 58, 92, .08), transparent 60%), var(--stage); opacity: 0; }
+.f-card svg { position: absolute; inset: 0; width: 1600px; height: 900px; overflow: visible; }
+.f-abs { position: absolute; white-space: nowrap; }
+.f-h { font: 700 54px/1.05 var(--f-disp); letter-spacing: .002em; color: var(--f-ink); }
+.f-h .w { display: inline-block; will-change: auto; }
+.f-wm { font: 700 116px/1 var(--f-disp); letter-spacing: -.004em; color: var(--f-ink); }
+.f-eb { font: 600 15px/1 var(--f-disp); letter-spacing: .16em; text-transform: uppercase; color: var(--f-acc); }
+.f-sb { font: 400 25px/1.4 var(--f-body); color: var(--f-sub); white-space: normal; }
+.f-lab { font: 600 15px/1 var(--f-disp); letter-spacing: .06em; fill: var(--f-dim); }
+.f-lab tspan.k { fill: var(--f-ink); }
+.f-stripe { display: flex; gap: 6px; height: 7px; }
+.f-stripe i { display: block; height: 100%; border-radius: 2px; }
+
+/* zijpaneel met tekst */
+.f-side { position: absolute; top: 0; bottom: 0; width: 560px; background: linear-gradient(160deg, var(--stage2), var(--stage) 60%); }
+.f-side.left { left: 0; box-shadow: 30px 0 60px rgba(4, 8, 16, .55); }
+.f-side .in { position: absolute; left: 72px; right: 56px; top: 50%; transform: translateY(-50%); }
+.f-side .f-h { white-space: normal; font-size: 56px; text-wrap: balance; }
+.f-side .f-sb { margin-top: 22px; font-size: 22px; }
+.f-side .f-eb { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+.f-side .foot { position: absolute; left: 72px; bottom: 40px; font: 500 14px/1 var(--f-body); color: var(--f-dim); }
+.f-item { position: absolute; left: 0; right: 0; top: 0; }
+.f-item .f-eb { display: flex; align-items: center; gap: 12px; }
+
+/* band boven het venster */
+.f-band { position: absolute; left: 0; right: 0; top: 0; height: 200px;
+  background: linear-gradient(180deg, var(--stage) 0, var(--stage) 158px, rgba(10, 17, 32, 0) 168px); }
+.f-band .in { position: absolute; left: 176px; right: 176px; top: 34px; height: 120px; }
+.f-band .f-eb { margin-bottom: 12px; }
+.f-band .f-h { font-size: 46px; }
+.f-band .f-sb { margin-top: 9px; font-size: 19px; white-space: nowrap; }
+.f-steps { position: absolute; right: 176px; top: 40px; display: flex; gap: 6px; }
+.f-step { display: flex; align-items: center; gap: 8px; padding: 9px 13px 11px; border-radius: 9px; font: 600 16px/1 var(--f-disp); letter-spacing: .02em; color: var(--f-dim); position: relative; }
+.f-step svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.f-step b { position: absolute; left: 13px; right: 13px; bottom: 2px; height: 3px; border-radius: 2px; background: var(--f-acc); transform-origin: 0 50%; }
+.f-tag { position: absolute; right: 176px; top: 46px; font: 500 14px/1 var(--f-body); color: var(--f-dim); }
+
+/* vijf weergaven */
+.f-tiles { position: absolute; left: 0; right: 0; top: 470px; display: flex; justify-content: center; gap: 22px; }
+.f-tile { width: 210px; height: 172px; border-radius: 16px; background: rgba(255, 255, 255, .045); border: 1px solid rgba(255, 255, 255, .12);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; position: relative; overflow: hidden; }
+.f-tile svg { width: 54px; height: 54px; fill: none; stroke: var(--f-ink); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.f-tile span { font: 600 23px/1 var(--f-disp); letter-spacing: .01em; }
+.f-tile i { position: absolute; left: 0; right: 0; top: 0; height: 4px; }
+.f-tile small { position: absolute; top: 14px; left: 16px; font: 600 13px/1 var(--f-disp); color: var(--f-dim); letter-spacing: .08em; }
+
+/* cursor, klik, spotlight */
+.f-cursor { position: absolute; left: 0; top: 0; width: 30px; height: 36px; margin: -3px 0 0 -4px; transform-origin: 4px 3px; filter: drop-shadow(0 3px 6px rgba(0, 0, 0, .35)); }
+.f-ripple { position: absolute; left: 0; top: 0; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; border: 3px solid var(--f-blue); opacity: 0; }
+.f-spot { position: absolute; border-radius: 12px; border: 2.5px solid var(--f-acc); opacity: 0; }

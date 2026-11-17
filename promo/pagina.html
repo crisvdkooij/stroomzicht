@@ -1,0 +1,113 @@
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>Capaciteitskaart promofilm</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Inter:wght@400;500&display=swap">
+<style>
+/* Lay-out: één kolom, de film als bioscoopdoek; eronder de hoofdstukken als tijdlijn die de film bestuurt.
+   Bewust één donkere look, gelijk aan de film zelf. */
+:root {
+  color-scheme: dark;
+  --stage: #0a1120; --panel: #111a2e; --line: #23304a; --ink: #f3f6fb; --sub: #aab6cb; --dim: #7f8ba3; --acc: #8aa4ff;
+  --s0: #17a08e; --s1: #dfa90f; --s2: #e66a2e; --s3: #d23a5c;
+  --f-disp: "Barlow Semi Condensed", "Arial Narrow", system-ui, sans-serif;
+  --f-body: Inter, "Segoe UI", system-ui, sans-serif;
+}
+html, body { background: var(--stage); color: var(--ink); }
+body { font: 16px/1.5 var(--f-body); -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-block: 40px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.eb { display: flex; align-items: center; gap: 12px; font: 600 14px/1 var(--f-disp); letter-spacing: .16em; text-transform: uppercase; color: var(--acc); }
+.stripe { display: flex; gap: 3px; } .stripe i { width: 10px; height: 6px; border-radius: 2px; }
+h1 { margin: 14px 0 6px; font: 700 clamp(34px, 6vw, 56px)/1.04 var(--f-disp); text-wrap: balance; }
+.lede { margin: 0 0 26px; max-width: 62ch; color: var(--sub); font-size: 17px; }
+.screen { position: relative; border-radius: 14px; overflow: hidden; background: #000; box-shadow: 0 30px 80px rgba(0, 0, 0, .55), 0 0 0 1px var(--line); }
+video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; max-width: 100%; background: #000; }
+.chap { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: 14fr 8fr 30fr 4fr 36fr 10fr; gap: 4px; }
+.chap button { position: relative; width: 100%; min-width: 0; padding: 12px 10px 10px; border: 0; border-radius: 8px; background: var(--panel); color: var(--sub); text-align: left; cursor: pointer; font: inherit; }
+.chap button::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; border-radius: 8px 8px 0 0; background: var(--line); }
+.chap button i { position: absolute; left: 0; top: 0; height: 3px; width: 0; border-radius: 8px 0 0 0; background: var(--acc); }
+.chap button:hover { color: var(--ink); background: #16223a; }
+.chap button.on { color: var(--ink); }
+.chap button:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+.chap b { display: block; font: 600 15px/1.2 var(--f-disp); letter-spacing: .02em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chap span { display: block; margin-top: 3px; font-size: 12.5px; color: var(--dim); font-variant-numeric: tabular-nums; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 40px; margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line); }
+.grid h2 { margin: 0 0 10px; font: 700 22px/1.15 var(--f-disp); }
+.grid ol, .grid ul { margin: 0; padding-left: 20px; color: var(--sub); display: grid; gap: 6px; }
+.grid li::marker { color: var(--dim); }
+.grid p { margin: 0; color: var(--sub); }
+a { color: var(--acc); text-underline-offset: 3px; }
+.note { margin-top: 36px; font-size: 13.5px; color: var(--dim); }
+@media (max-width: 760px) {
+  .wrap { padding-block: 24px 40px; }
+  .chap { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+
+<div class="wrap">
+  <div class="eb"><span class="stripe"><i style="background:var(--s0)"></i><i style="background:var(--s1)"></i><i style="background:var(--s2)"></i><i style="background:var(--s3)"></i></span>Prototype · promofilm</div>
+  <h1>De capaciteitskaart in 100 seconden</h1>
+  <p class="lede">Waar is ruimte op het stroomnet, en wat kun je doen als die er niet is? De film laat zien wat er anders is aan dit prototype en hoe de vijf weergaven werken.</p>
+
+  <div class="screen">
+    <video id="film" controls playsinline preload="metadata" poster="poster.jpg">
+      <source src="capaciteitskaart-promo.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <ol class="chap" id="chap" aria-label="Hoofdstukken">
+    <li><button type="button" data-t="0" data-end="14"><i></i><b>Opening</b><span>0:00</span></button></li>
+    <li><button type="button" data-t="14" data-end="22"><i></i><b>De kaart</b><span>0:14</span></button></li>
+    <li><button type="button" data-t="22" data-end="52"><i></i><b>Wat is er anders</b><span>0:22</span></button></li>
+    <li><button type="button" data-t="52" data-end="56"><i></i><b>Vijf vragen</b><span>0:52</span></button></li>
+    <li><button type="button" data-t="56" data-end="92"><i></i><b>De vijf weergaven</b><span>0:56</span></button></li>
+    <li><button type="button" data-t="92" data-end="102"><i></i><b>Slot</b><span>1:32</span></button></li>
+  </ol>
+
+  <div class="grid">
+    <section>
+      <h2>Wat is er anders</h2>
+      <ol>
+        <li>Alle netvlakken in één keten, van 380 kV tot de straat.</li>
+        <li>Klik op een plek en zie welke schakel knelt.</li>
+        <li>Een vierde status: aansluiten kan wel, buiten de piek.</li>
+        <li>Concrete opties, tot een plek met ruimte verderop.</li>
+        <li>Een vooruitblik tot 2035, met geplande uitbreidingen.</li>
+      </ol>
+    </section>
+    <section>
+      <h2>Vijf weergaven</h2>
+      <ul>
+        <li><b>Thuis</b>: kan mijn warmtepomp erbij?</li>
+        <li><b>Bedrijf</b>: is er ruimte voor mijn aansluiting?</li>
+        <li><b>Opwek &amp; opslag</b>: waar kan ik invoeden of opslaan?</li>
+        <li><b>Regio &amp; beleid</b>: waar knelt het, en tot wanneer?</li>
+        <li><b>Netexpert</b>: alle netvlakken, alle cijfers.</li>
+      </ul>
+    </section>
+  </div>
+  <p class="note">Alle netdata in het prototype en in deze film is verzonnen. Beeld opgenomen uit het werkende prototype, muziek gesynthetiseerd.
+    <a href="https://claude.ai/artifact/1V2Qbg5zRYwqpmuo2GJUvx">Open het prototype</a>.</p>
+</div>
+
+<script>
+(function () {
+  var v = document.getElementById('film'), btns = Array.prototype.slice.call(document.querySelectorAll('#chap button'));
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      try { v.currentTime = +b.dataset.t; var p = v.play(); if (p && p.catch) p.catch(function () {}); } catch (e) {}
+    });
+  });
+  function tick() {
+    var t = v.currentTime || 0;
+    btns.forEach(function (b) {
+      var a = +b.dataset.t, z = +b.dataset.end, p = Math.max(0, Math.min(1, (t - a) / (z - a)));
+      b.querySelector('i').style.width = (p * 100) + '%';
+      b.classList.toggle('on', t >= a && t < z);
+    });
+  }
+  v.addEventListener('timeupdate', tick);
+  v.addEventListener('seeked', tick);
+  tick();
+})();
+</script>
