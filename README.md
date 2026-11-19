@@ -1,6 +1,6 @@
-# Capaciteitskaart — prototype
+# Stroomzicht
 
-Een prototype van een betere capaciteitskaart van het Nederlandse stroomnet. **Alle netdata is verzonnen**; het gaat om de vorm, niet om de cijfers.
+Stroomzicht is een prototype van een betere capaciteitskaart van het Nederlandse stroomnet. **Alle netdata is verzonnen**; het gaat om de vorm, niet om de cijfers.
 
 Open `index.html` in een browser. Er is geen server nodig, wel internet voor d3 en de lettertypen.
 
@@ -60,7 +60,7 @@ Verzonnen: alle stations, lijnen, capaciteiten, belastingen, wachtrijen en uitbr
 
 ## Promofilm
 
-`promo/capaciteitskaart-promo.mp4` is een film van 102 seconden (1920×1080, 30 fps, 14 MB) die het prototype introduceert: wat er anders is en hoe de vijf weergaven werken. Het script maakt daarnaast een master van hogere kwaliteit (45 MB) in `promo/build/`.
+`promo/capaciteitskaart-promo.mp4` is een film van 102 seconden (1920×1080, 30 fps, 14 MB) die het prototype introduceert: wat er anders is en hoe de vijf weergaven werken. De film is opgenomen toen het prototype nog Capaciteitskaart heette en toont die naam nog. Het script maakt daarnaast een master van hogere kwaliteit (45 MB) in `promo/build/`.
 
 Het beeld is opgenomen uit het werkende prototype. `promo/film.js` legt er een regielaag over met camera, cursor, titels en klikken. `promo/render.mjs` zet de klok van de browser stil en schiet frame voor frame, zodat elke beweging precies op tijd staat en elke opname gelijk is. De muziek wordt gesynthetiseerd door `promo/music.py`; klikken en whooshes vallen op de momenten die de regie logt.
 
